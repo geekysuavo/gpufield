@@ -1,0 +1,37 @@
+verbose
+
+current 0.1
+moveto 0 0 5.20e-2
+solenoid +z 6e-2 650e-6 10 512
+
+current -0.1
+moveto 0 0 -5.85e-2
+solenoid +z 6e-2 650e-6 10 512
+
+moveto 0 0 0
+
+file out/gradz-1.0-w.dat
+wires
+
+file out/gradz-1.0-x.dat
+grid x 0.2 0.2 256 256
+
+file out/gradz-1.0-y.dat
+grid y 0.2 0.2 256 256
+
+file out/gradz-1.0-z.dat
+grid z 0.2 0.2 256 256
+
+file out/gradz-1.0-xy.dat
+moveto 0 0 -0.1
+traj 0 0 0.1 1024
+
+file out/gradz-1.0-yz.dat
+moveto -0.1 0 0
+traj 0.1 0 0 1024
+
+file out/gradz-1.0-xz.dat
+moveto 0 -0.1 0
+traj 0 0.1 0 1024
+
+end

@@ -1,0 +1,35 @@
+verbose
+current 100m
+
+moveto 0 0 -300u
+squarespiral 5c 1m 10
+
+moveto 0 0 -100u
+squarespiral 5c 1m 10
+
+moveto 0 0 +100u
+squarespiral 5c 1m 10
+
+moveto 0 0 +300u
+squarespiral 5c 1m 10
+
+file out/nfc-w.dat
+wires
+
+moveto 0 0 0
+
+file out/nfc-x.dat
+grid x 0.1 0.1 1024 1024
+
+file out/nfc-y.dat
+grid y 0.1 0.1 1024 1024
+
+file out/nfc-z.dat
+grid z 0.1 0.1 1024 1024
+
+file out/nfc-xy.dat
+moveto 0 0 -5c
+traj 0 0 +5c 1024
+
+clear
+end

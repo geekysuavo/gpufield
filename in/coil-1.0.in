@@ -1,0 +1,34 @@
+verbose
+current 2.23
+
+moveto 0 0 -5e-2
+solenoid +z 2.500e-2 650e-6 158 8192
+
+moveto 0 0 -5e-2
+solenoid +z 2.565e-2 650e-6 158 8192
+
+moveto 0 0 -5e-2
+solenoid +z 2.630e-2 650e-6 158 8192
+
+moveto 0 0 -5e-2
+solenoid +z 2.695e-2 650e-6 158 8192
+
+moveto 0 0 0
+
+file out/coil-1.0-w.dat
+wires
+
+file out/coil-1.0-x.dat
+grid x 0.2 0.2 256 256
+
+file out/coil-1.0-y.dat
+grid y 0.2 0.2 256 256
+
+file out/coil-1.0-z.dat
+grid z 0.2 0.2 256 256
+
+file out/coil-1.0-xy.dat
+moveto 0 0 -0.5
+traj 0 0 0.5 1024
+
+end

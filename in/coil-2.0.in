@@ -1,0 +1,82 @@
+verbose
+current 2.0
+
+# layer 1
+moveto 0 0 -2.5e-2
+solenoid +z 2.5000e-2 1.025e-3 50 8192
+
+# layer 2
+moveto 0 0 -2.5e-2
+solenoid +z 2.6025e-2 1.025e-3 50 8192
+
+# layer 3
+moveto 0 0 -2.5e-2
+solenoid +z 2.7050e-2 1.025e-3 50 8192
+
+# layer 4
+moveto 0 0 -2.5e-2
+solenoid +z 2.8075e-2 1.025e-3 50 8192
+
+# layer 5
+moveto 0 0 -2.5e-2
+solenoid +z 2.9100e-2 1.025e-3 50 8192
+
+# layer 6
+moveto 0 0 -2.5e-2
+solenoid +z 3.0125e-2 1.025e-3 50 8192
+
+# layer 7
+moveto 0 0 -2.5e-2
+solenoid +z 3.1150e-2 1.025e-3 50 8192
+
+# layer 8
+moveto 0 0 -2.5e-2
+solenoid +z 3.2175e-2 1.025e-3 50 8192
+
+# layer 9
+moveto 0 0 -2.5e-2
+solenoid +z 3.3200e-2 1.025e-3 50 8192
+
+# layer 10
+moveto 0 0 -2.5e-2
+solenoid +z 3.4225e-2 1.025e-3 50 8192
+
+# layer 11
+moveto 0 0 -2.5e-2
+solenoid +z 3.5250e-2 1.025e-3 50 8192
+
+# layer 12
+moveto 0 0 -2.5e-2
+solenoid +z 3.6275e-2 1.025e-3 50 8192
+
+# layer 13
+moveto 0 0 -2.5e-2
+solenoid +z 3.7300e-2 1.025e-3 50 8192
+
+# layer 14
+moveto 0 0 -2.5e-2
+solenoid +z 3.8325e-2 1.025e-3 50 8192
+
+# layer 14
+moveto 0 0 -2.5e-2
+solenoid +z 3.9350e-2 1.025e-3 50 8192
+
+moveto 0 0 0
+
+file out/coil-2.0-w.dat
+wires
+
+file out/coil-2.0-x.dat
+grid x 0.2 0.2 256 256
+
+file out/coil-2.0-y.dat
+grid y 0.2 0.2 256 256
+
+file out/coil-2.0-z.dat
+grid z 0.2 0.2 256 256
+
+file out/coil-2.0-xy.dat
+moveto 0 0 -0.5
+traj 0 0 0.5 1024
+
+end

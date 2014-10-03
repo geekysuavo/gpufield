@@ -1,0 +1,33 @@
+verbose
+
+current 0.1
+moveto 0 0 0
+golay +x 2e-2 20e-2 0 120 6e-2 650e-6 10 64
+
+moveto 0 0 0
+
+file out/gradx-1.0-w.dat
+wires
+
+file out/gradx-1.0-x.dat
+grid x 0.2 0.2 256 256
+
+file out/gradx-1.0-y.dat
+grid y 0.2 0.2 256 256
+
+file out/gradx-1.0-z.dat
+grid z 0.2 0.2 256 256
+
+file out/gradx-1.0-xy.dat
+moveto 0 0 -0.1
+traj 0 0 0.1 1024
+
+file out/gradx-1.0-yz.dat
+moveto -0.1 0 0
+traj 0.1 0 0 1024
+
+file out/gradx-1.0-xz.dat
+moveto 0 -0.1 0
+traj 0 0.1 0 1024
+
+end

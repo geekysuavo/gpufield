@@ -1,0 +1,135 @@
+
+ * =============== *
+ | ABOUT GPUFIELD: |
+ * =============== *
+
+gpufield is a small CUDA C program for calculating magnetic fields around
+direct current electromagnets.
+
+gpufield reads a pretty terse yet flexible scripting language that allows the
+user to define coil geometries in 3D space, and then take 2D slices of the
+resulting magnetic fields. It's pretty quick and dirty, but useful enough
+for designing coil geometries for earth's field NMR spectroscopy (EFNMR).
+
+As an example, the following gpufield script computes the magnetic field around
+an 'infinitely' long wire:
+
+   current 1
+   moveto 0 0 -1e6
+   lineto 0 0 1e6
+   moveto 0 0 0
+   file 'field.dat'
+   grid z 1 1 256 256
+   clear
+   end
+
+The resulting file 'field.dat' will contain nine columns of data:
+
+   i x y z Bx By Bz |B|
+
+where the indices 'i' and 'j' will run from 0 to 255, 'x' and 'y' will run
+from -0.5 to 0.5, and 'z' will equal 0. The components of the magnetic field
+will be stored in 'Bx', 'By' and 'Bz', and the magnitude of the field will be
+stored in '|B|'. (This is just a simple example, of course)
+
+
+ * ========================= *
+ | INSPIRATION FOR GPUFIELD: |
+ * ========================= *
+
+The gpufield program was spawned out of my search for a faster way to compute
+magnetic fields of direct current electromagnets than from the magnetic
+scalar potential. Finally, I ran across this paper:
+
+   Rashdi Shah Ahmad, Amiruddin Bin Shaari, Chew Teong Han, "Magnetic Field
+   Simulation of Golay Coil", Journal of Fundamental Sciences, 2008.
+
+After seeing how much faster and simpler the computations could be, I had to
+write my own program. However, there's really no reason to burn CPU cycles on
+such an embarrassingly parallel problem, so I hooked into the NVIDIA CUDA API
+to accelerate the computations.
+
+
+ * =========================== *
+ | VALID COMMANDS IN GPUFIELD: |
+ * =========================== *
+
+* CURRENT: sets the current for wires to 'i', in Amperes.
+* -------- *
+current [i]
+
+* FILE: sets the filename for subsequent writes.
+* ----- *
+file '[filename]'
+
+* MOVETO: moves the wire tracer to (x,y,z).
+* ------- *
+moveto [x] [y] [z]
+
+* LINETO: traces a line from the current location to (x,y,z).
+* ------- *
+lineto [x] [y] [z]
+
+* CIRCLE: draws a circle of 'n' segments along 'dir'.
+* ------- *
+circle [dir] [radius] [n]
+
+* ARC: draws an arc of 'n' segments from angles 't1' to 't2' along 'dir'.
+* ---- *
+arc [dir] [radius] [t1] [t2] [n]
+
+* SOLENOID: draws a solenoid of 'n' line segments along 'dir'.
+* --------- *
+solenoid [dir] [radius] [pitch] [turns] [n]
+
+* HELMHOLTZ: draws a helmholtz coil pair of 'n' segments along 'dir'.
+* ---------- *
+helmholtz [dir] [radius] [pitch] [turns] [n]
+
+* MAXWELL: draws a maxwell coil triple of 'n' segments along 'dir'.
+* -------- *
+maxwell [dir] [radius] [pitch] [turns] [n]
+
+* GOLAY: draws a golay coil of 'n' segments per arc with longitudinal axis
+*        +z and gradient axis 'dir'.
+* ------ *
+golay [dir] [a] [b] [c] [theta] [radius] [pitch] [turns] [n]
+
+* TRAJ: computes the field along a straight line from the current point
+        to (x,y,z), with 'n' equally spaced points along the line.
+* ----- *
+traj [x] [y] [z] [n]
+
+* GRID: computes the field over a two-way grid having constant-dimension 'dim'
+*       and second- and third- dimension extents (u,v) and counts (unum,vnum).
+* ----- *
+grid [dim] [u] [v] [unum] [vnum]
+
+* WIRES: writes the current wire list to the current filename.
+* ------ *
+wires
+
+* CLEAR: clears the wire list.
+* ------ *
+clear
+
+* VERBOSE: turns on verbose messages.
+* -------- *
+verbose
+
+* QUIET: turns off verbose messages.
+* ------ *
+quiet
+
+* END: quits the application.
+* ---- *
+end
+stop
+quit
+halt
+
+
+ * === *
+ | FIN |
+ * === *
+
